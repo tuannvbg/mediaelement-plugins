@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>MediaElement.js 3.0 - Playlist Plugin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="libs/mediaelement/4.2.6/mediaelementplayer.css">
+    <link rel="stylesheet" href="css/playlist.css">
+    <link rel="stylesheet" href="css/demo.css">
+</head>
+<body>
+<div id="container">
+
+    <h1>Playlist Plugin</h1>
+    <p><a href="index.html">Back to Main</a></p>
+
+    <p>This plugin allows the creation of a video/audio playlist.</p>
+
+    <h2>Video Player</h2>
+
+    <div class="media-wrapper">
+        <video id="player1" style=max-width:100% controls preload="none"
+               data-cast-title="Tình Đơn Côi"
+               data-cast-description="Nguyễn Phi Hùng"
+               poster="https://avatar-ex-swe.nixcdn.com/playlist/2017/11/27/0/f/d/e/1511778509803_500.jpg">
+            <source src="http://streaming.amusic.vn/amusic/videos/HTTP_720p/5/47074/47074.mp4" data-playlist-thumbnail="https://i.ytimg.com/vi/K0C6LaMP8vY/0.jpg"
+                    title="Tình Đơn Côi" data-playlist-description="Nguyễn Phi Hùng" type="video/mp4">
+		 <track kind="subtitles" src="../../media/nhac.tre/Tuyen.Tap.Nhac.Hoa.Loi.Viet.Vol.1/Phi.Hung-Tinh.Don.Coi.srt" srclang="en" />
+            <source src="https://www.youtube.com/watch?v=nhn7_3XwFhU" title="Dáng Em" data-playlist-description="Phi Hùng" type="video/youtube" data-playlist-thumbnail="https://i.ytimg.com/vi/nhn7_3XwFhU/0.jpg">
+            <source src="http://streaming.amusic.vn/amusic/songs/iphone/19/156262/156262.mp3" title="Nụ Hồng Mong Manh" data-playlist-description="Bích Phương" type="video/mp4" data-playlist-thumbnail="https://avatar-ex-swe.nixcdn.com/song/2019/10/14/6/9/5/d/1571024668649_300.jpg">
+        </video>
+    </div>
+
+    <h2>Audio Player</h2>
+
+    <div class="media-wrapper">
+	
+        <audio id="player2" controls preload="none" style=max-width:100%>
+               data-cast-title="Jazz Example"
+               data-cast-description="This is a description for audio only"
+               data-cast-poster="http://mediaelementjs.com/images/big_buck_bunny.jpg">
+		
+            <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3" title="Jazz Example" data-playlist-thumbnail="http://mediaelementjs.com/images/big_buck_bunny.jpg" data-playlist-description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum justo arcu. Vestibulum commodo lacus bibendum sollicitudin commodo.">
+		 <track kind="subtitles" src="../examples/subtitles.srt" srclang="en" />
+            <source src="https://api.soundcloud.com/tracks/323195515/stream?client_id=95f22ed54a5c297b1c41f72d713623ef" type="audio/mp3" title="Soundcloud rocks!" data-playlist-description="Curabitur et malesuada arcu. Praesent hendrerit, quam vel pellentesque aliquam, metus felis mattis velit, quis varius metus diam vitae diam. Integer ante massa, tempor in accumsan eu, sodales in lectus.">
+            <source src="rtmp://s3b78u0kbtx79q.cloudfront.net/cfx/st/mp3:fake_empire-cbr" type="rtmp/video" title="Playing RTMP audio...">
+        </audio>
+    </div>
+
+    <h2>Components</h2>
+    <p>The following table describes the components that can be used with this plugin, and the keyword to be used on the <i>features</i> array configuration.</p>
+    <table>
+        <thead>
+        <tr>
+            <th>Component</th>
+            <th>Keyword</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Playlist</td>
+            <td>playlist</td>
+            <td>REQUIRED; The main plugin that builds the playlist</td>
+         </tr>
+        <tr>
+            <td>Previous Track</td>
+            <td>prevtrack</td>
+            <td>OPTIONAL; Control to go to the previous playlist item</td>
+        </tr>
+        <tr>
+            <td>Next Track</td>
+            <td>nexttrack</td>
+            <td>OPTIONAL; Control to go to the next playlist item</td>
+        </tr>
+        <tr>
+            <td>Loop</td>
+            <td>loop</td>
+            <td>OPTIONAL; Control to loop the current media</td>
+        </tr>
+        <tr>
+            <td>Shuffle</td>
+            <td>shuffle</td>
+            <td>OPTIONAL; Control to shuffle the playlist <sup>1</sup></td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="footnote"><sub>1</sub> If you plan to use the <i>Loop</i> component, it is strongly recommended NOT to use the standalone version of Loop included in the project.</p>
+
+    <h2>API</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Default</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>playlist</td>
+                <td>array</td>
+                <td>[]</td>
+                <td>List to be played; the array consists in a series of objects that MUST include the <i>src</i> and <i>title</i> attributes; other possible items: `data-thumbnail`, `type`, `description`. <strong>If its empty, it will search for all the <i>source</i> elements within the video/audio tags</strong></td>
+            </tr>
+            <tr>
+                <td>showPlaylist</td>
+                <td>boolean</td>
+                <td>true</td>
+                <td>Whether or not to display the playlist; if so, a button to toggle the playlist will be displayed</td>
+            </tr>
+            <tr>
+                <td>autoClosePlaylist</td>
+                <td>boolean</td>
+                <td>false</td>
+                <td>If set to <i>true</i>, the playlist container will hide once user selects an item</td>
+            </tr>
+            <tr>
+                <td>prevText</td>
+                <td>string</td>
+                <td>null</td>
+                <td>Title for Previous button for WARIA purposes</td>
+            </tr>
+            <tr>
+                <td>nextText</td>
+                <td>string</td>
+                <td>null</td>
+                <td>Title for Next button for WARIA purposes</td>
+            </tr>
+            <tr>
+                <td>loopText</td>
+                <td>string</td>
+                <td>null</td>
+                <td>Title for Loop button for WARIA purposes</td>
+            </tr>
+            <tr>
+                <td>shuffleText</td>
+                <td>string</td>
+                <td>null</td>
+                <td>Title for Shuffle button for WARIA purposes</td>
+            </tr>
+            <tr>
+                <td>playlistTitle</td>
+                <td>string</td>
+                <td>null</td>
+                <td>Title for Playlist button for WARIA purposes</td>
+            </tr>
+            <tr>
+                <td>currentMessage</td>
+                <td>string</td>
+                <td>null</td>
+                <td>Message ONLY for audio, prepended to the <i>title</i> of media (i.e., <i>Now playing</i>)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="libs/mediaelement/4.2.6/mediaelement-and-player.min.js"></script>
+<script src="js/playlist.js"></script>
+<script>
+	var mediaElements = document.querySelectorAll('video, audio');
+
+	for (var i = 0, total = mediaElements.length; i < total; i++) {
+		new MediaElementPlayer(mediaElements[i], {
+			features: ['prevtrack', 'playpause', 'nexttrack', 'current', 'progress', 'duration', 'volume', 'playlist', 'shuffle', 'loop', 'fullscreen'],
+		});
+	}
+</script>
+</body>
+</html>
